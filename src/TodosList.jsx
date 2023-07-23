@@ -1,18 +1,17 @@
-function TodosList() {
-	return;
-}
-
-export default TodosList;
-
-{
-	/* <li>
+function TodosList({ id, value, remove }) {
+	return (
+		<li id={id}>
 			<div className='join'>
 				<input
 					type='text'
-					placeholder='Type here'
 					className='input input-bordered w-full max-w-xs join-item'
+					value={value}
+					disabled
 				/>
-				<button className='btn btn-square btn-outline rounded-l'>
+				<button
+					className='btn btn-square btn-outline rounded-l'
+					onClick={remove}
+				>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						className='h-6 w-6'
@@ -29,5 +28,8 @@ export default TodosList;
 					</svg>
 				</button>
 			</div>
-		</li> */
+		</li>
+	);
 }
+
+export default TodosList;

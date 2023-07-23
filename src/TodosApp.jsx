@@ -1,6 +1,7 @@
 import Input from './Input';
-// import TodosList from './TodosList';
+import TodosList from './TodosList';
 import { useState } from 'react';
+import { v4 as uuid } from 'uuid';
 
 function TodosApp() {
 	const [textVal, setTextVal] = useState('');
@@ -12,7 +13,7 @@ function TodosApp() {
 
 	const addTodo = () => {
 		setTodo((oldTodo) => {
-			return [...oldTodo, textVal];
+			return [...oldTodo, { id: uuid(), value: textVal }];
 		});
 	};
 
@@ -22,13 +23,26 @@ function TodosApp() {
 		setTextVal('');
 	};
 
-	const list = todo.map((unit) => <li>{unit}</li>);
+	const remove = (id) => {
+		setTodo((oldTodo) => {
+			return oldTodo.filter((unit) => unit.id !== id);
+		});
+	};
 
 	return (
 		<>
 			<div>
 				<h1>Todos</h1>
-				<ul>{list}</ul>
+				<ul>
+					{todo.map((unit) => (
+						<TodosList
+							key={unit.id}
+							value={unit.value}
+							id={unit.id}
+							remove={() => remove(unit.id)}
+						/>
+					))}
+				</ul>
 			</div>
 			<Input
 				textVal={textVal}
