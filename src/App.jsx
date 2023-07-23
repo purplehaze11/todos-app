@@ -1,10 +1,10 @@
-import TodosApp from './TodosApp';
+import TodosView from './TodosView';
 import './App.css';
 
 function App() {
 	return (
 		<>
-			<TodosApp />
+			<TodosView />
 		</>
 	);
 }

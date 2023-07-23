@@ -1,56 +1,39 @@
-import Input from './Input';
-import TodosList from './TodosList';
-import { useState } from 'react';
-import { v4 as uuid } from 'uuid';
-
 function TodosApp() {
-	const [textVal, setTextVal] = useState('');
-	const [todo, setTodo] = useState([]);
-
-	const handleChange = (e) => {
-		setTextVal(e.target.value);
-	};
-
-	const addTodo = () => {
-		setTodo((oldTodo) => {
-			return [...oldTodo, { id: uuid(), value: textVal }];
-		});
-	};
-
-	const submit = (e) => {
-		e.preventDefault();
-		addTodo();
-		setTextVal('');
-	};
-
-	const remove = (id) => {
-		setTodo((oldTodo) => {
-			return oldTodo.filter((unit) => unit.id !== id);
-		});
-	};
-
 	return (
 		<>
-			<div>
-				<h1>Todos</h1>
-				<ul>
-					{todo.map((unit) => (
-						<TodosList
-							key={unit.id}
-							value={unit.value}
-							id={unit.id}
-							remove={() => remove(unit.id)}
-						/>
-					))}
-				</ul>
+			<div className='navbar bg-base-100'>
+				<div className='flex-1'>
+					<a className='btn btn-ghost normal-case text-xl'>daisyUI</a>
+				</div>
+				<div className='flex-none'>
+					<button className='btn btn-square btn-ghost'>
+						<svg
+							xmlns='http://www.w3.org/2000/svg'
+							fill='none'
+							viewBox='0 0 24 24'
+							className='inline-block w-5 h-5 stroke-current'
+						>
+							<path
+								strokeLinecap='round'
+								strokeLinejoin='round'
+								strokeWidth='2'
+								d='M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z'
+							></path>
+						</svg>
+					</button>
+				</div>
 			</div>
-			<Input
-				textVal={textVal}
-				textChange={handleChange}
-				submit={submit}
-			/>
+			<ul className='menu bg-base-200 w-56 rounded-box'>
+				<li>
+					<a>Item 1</a>
+				</li>
+				<li>
+					<a>Item 2</a>
+				</li>
+				<li>
+					<a>Item 3</a>
+				</li>
+			</ul>
 		</>
 	);
 }
-
-export default TodosApp;

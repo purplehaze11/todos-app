@@ -4,17 +4,18 @@ function Input({ textVal, textChange, submit }) {
 			id='form'
 			onSubmit={submit}
 		>
-			<div className='join'>
+			<div className='join rounded-xl'>
 				<input
 					name='add-todo'
 					className='input input-bordered join-item'
 					placeholder='Add new Todo'
 					value={textVal}
 					onChange={textChange}
+					minLength={1}
 				/>
 				<button
 					type='submit'
-					className='btn join-item rounded-r'
+					className='btn btn-primary join-item'
 				>
 					Add
 				</button>
